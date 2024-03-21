@@ -33,7 +33,10 @@ app.post('/parse', (req, res) => {
         if (!error && response.statusCode === 200) {
             const phoneNumbers = parsePhoneNumbers(html);
             console.log(phoneNumbers)
-            res.json({ phoneNumbers });
+            res.json({
+                src: url,
+                numbers: phoneNumbers
+            });
         } else {
             res.status(500).json({ error: 'Error parsing webpage' });
         }
